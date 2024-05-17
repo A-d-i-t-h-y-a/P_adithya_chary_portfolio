@@ -10,6 +10,7 @@ function App() {
   const skillSec = useRef();
   const aboutSec = useRef();
   const contactSec = useRef();
+  const skillTrig = useRef();
 
   const downloadResume = () => {
     // Replace 'resume.pdf' with the path to your PDF file
@@ -58,32 +59,13 @@ function App() {
       ease: "elastic.out"
     })
 
-    gsap.fromTo(".whitebtn", {
-      opacity: 0,
-      y: 20,
-      scale: 1.1
-    }, {
-      scrollTrigger: {
-        trigger: ".whitebtn",
-        start: "top 80%",
-        toggleActions: 'restart pause resume reset'
-      },
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      stagger: {
-        each: 0.1
-      },
-      ease: "elastic.out"
-    })
-
     gsap.fromTo("#abtimg", {
       opacity: 0,
       x: 10,
     }, {
       scrollTrigger: {
         trigger: "#abtimg",
-        start: "top 60%",
+        start: `top ${screen.width < 1138 ? "100%" : "60%"}`,
         toggleActions: "restart pause resume reset",
       },
       opacity: 1,
@@ -105,7 +87,8 @@ function App() {
         x: 0,
         scrollTrigger: {
           trigger: proj,
-          end: "bottom bottom",
+          start: `top ${screen.width < 1138 ? "140%" : "70%"}`,
+          end: `bottom ${screen.width < 1138 ? "140%" : "70%"}`,
           // toggleActions: 'restart pause resume none',
           scrub: true
         },
@@ -114,6 +97,31 @@ function App() {
       i++;
     })
   }, { scope: projTrig })
+
+  useGSAP(() => {
+    const skills = gsap.utils.toArray(skillTrig.current.children);
+    skills.forEach((skill) => {
+      gsap.fromTo(skill, {
+        opacity: 0,
+        y: 20,
+        scale: 1.1
+      }, {
+        scrollTrigger: {
+          trigger: skill,
+          start: `top ${screen.width < 1138 ? "130%" : "70%"}`,
+          toggleActions: 'restart pause resume reset',
+          // markers: true
+        },
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        stagger: {
+          each: 0.2
+        },
+        ease: "elastic.out"
+      })
+    })
+  }, { scope: skillTrig })
 
   return (
     <>
@@ -139,6 +147,7 @@ function App() {
             <button id='hireme' onClick={()=> window.location.href = "mailto: periketi.adithyachary@gmail.com"}>Hire Me</button>
           </div>
         </nav>
+        <i className="menu fa-solid fa-bars"></i>
       </header>
       <hr />
       <main>
@@ -161,7 +170,7 @@ function App() {
         </section>
         <section id="skills" ref={skillSec}>
           <p className='herotitle'>My <span className="herobold">Skills</span></p>
-          <div id="skillcont">
+          <div id="skillcont" ref={skillTrig}>
             <div className='whitebtn'><div><i className="fa-brands fa-react"></i><p>React</p></div></div>
             <div className='whitebtn'><div><i className="fa-brands fa-node-js"></i><p>Node JS</p></div></div>
             <div className='whitebtn'><div><i className="fa-brands fa-js"></i><p>Javascript</p></div></div>
