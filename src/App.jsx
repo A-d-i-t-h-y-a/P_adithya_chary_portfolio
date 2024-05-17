@@ -10,6 +10,23 @@ function App() {
   const skillSec = useRef();
   const aboutSec = useRef();
   const contactSec = useRef();
+
+  const downloadResume = () => {
+    // Replace 'resume.pdf' with the path to your PDF file
+    const pdfUrl = '/Periketi_Adithya_Chary_Resume.pdf';
+    const link = document.createElement('a');
+    link.href = pdfUrl;
+    link.download = 'Periketi_Adithya_Chary_Resume.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    event.target.reset();
+  };
+
   useGSAP(() => {
     gsap.fromTo("#hero #herohead p, #hero #heroimg, #herobtn button", {
       opacity: 0,
@@ -62,7 +79,7 @@ function App() {
 
     gsap.fromTo("#abtimg", {
       opacity: 0,
-      x: 100,
+      x: 10,
     }, {
       scrollTrigger: {
         trigger: "#abtimg",
@@ -105,21 +122,25 @@ function App() {
           <img src="" alt="" />
           <ul>
             <li><a href='#' onClick={() => aboutSec.current?.scrollIntoView({
-  behavior: 'smooth'
-}) }>About Me</a></li>
+              behavior: 'smooth'
+            })}>About Me</a></li>
             <li><a href='#' onClick={() => skillSec.current?.scrollIntoView({
-  behavior: 'smooth'
-}) }>Skills</a></li>
+              behavior: 'smooth'
+            })}>Skills</a></li>
             <li><a href='#' onClick={() => projTrig.current?.scrollIntoView({
-  behavior: 'smooth'
-}) }>Project</a></li>
+              behavior: 'smooth'
+            })}>Project</a></li>
             <li><a href='#' onClick={() => contactSec.current?.scrollIntoView({
-  behavior: 'smooth'
-}) }>Contact Me</a></li>
+              behavior: 'smooth'
+            })}>Contact Me</a></li>
           </ul>
-          <button id='resume'>Resume<i className="fa-solid fa-download"></i></button>
+          <div id='navbtns'>
+            <button id='resume' onClick={downloadResume}>Resume<i className="fa-solid fa-download"></i></button>
+            <button id='hireme' onClick={()=> window.location.href = "mailto: periketi.adithyachary@gmail.com"}>Hire Me</button>
+          </div>
         </nav>
       </header>
+      <hr />
       <main>
         <section id='hero'>
           <div id='herohead'>
@@ -128,10 +149,10 @@ function App() {
             </p>
             <p className='desc'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo culpa debitis officiis ea laudantium. Aliquid nemo qui eum rerum, earum eligendi sit eos repellat quaerat inventore odio dolorum velit laborum autem a nobis at consequatur consectetur, quam odit facilis alias ea expedita magni! Est reprehenderit possimus itaque facere, tempore provident!</p>
             <div id='herobtn'>
-              <button className='blackbtn'><i className="fa-brands fa-discord"></i></button>
-              <button className='blackbtn'><i className="fa-brands fa-discord"></i></button>
-              <button className='blackbtn'><i className="fa-brands fa-discord"></i></button>
-              <button className='blackbtn'><i className="fa-brands fa-discord"></i></button>
+              <a className='blackbtn' target='__blank' href='https://www.linkedin.com/in/periketi-adithya-07121b23b/'><i className="fa-brands fa-linkedin"></i></a>
+              <a className='blackbtn' target='__blank' href='https://github.com/A-d-i-t-h-y-a'><i className="fa-brands fa-github"></i></a>
+              <a className='blackbtn' target='__blank' href='https://www.hackerrank.com/profile/periketi_adithy1'><i className="fa-brands fa-hackerrank"></i></a>
+              <a className='blackbtn' target='__blank' href='https://leetcode.com/u/adithya_2022/'><i><svg xmlns="http://www.w3.org/2000/svg" enableBackground="new 0 0 24 24" viewBox="0 0 24 24" id="leetcode"><path d="M22,14.355c0-0.742-0.564-1.346-1.26-1.346H10.676c-0.696,0-1.26,0.604-1.26,1.346s0.563,1.346,1.26,1.346H20.74C21.436,15.702,22,15.098,22,14.355z"></path><path d="M3.482,18.187l4.313,4.361C8.768,23.527,10.113,24,11.598,24c1.485,0,2.83-0.512,3.805-1.494l2.588-2.637c0.51-0.514,0.492-1.365-0.039-1.9c-0.531-0.535-1.375-0.553-1.884-0.039l-2.676,2.607c-0.462,0.467-1.102,0.662-1.809,0.662s-1.346-0.195-1.81-0.662l-4.298-4.363c-0.463-0.467-0.696-1.15-0.696-1.863c0-0.713,0.233-1.357,0.696-1.824l4.285-4.38c0.463-0.467,1.116-0.645,1.822-0.645s1.346,0.195,1.809,0.662l2.676,2.606c0.51,0.515,1.354,0.497,1.885-0.038c0.531-0.536,0.549-1.387,0.039-1.901l-2.588-2.636c-0.649-0.646-1.471-1.116-2.392-1.33l-0.034-0.007l2.447-2.503c0.512-0.514,0.494-1.366-0.037-1.901c-0.531-0.535-1.376-0.552-1.887-0.038L3.482,10.476C2.509,11.458,2,12.813,2,14.311C2,15.809,2.509,17.207,3.482,18.187z"></path></svg></i></a>
             </div>
           </div>
           <div id='heroimg'>
@@ -141,14 +162,16 @@ function App() {
         <section id="skills" ref={skillSec}>
           <p className='herotitle'>My <span className="herobold">Skills</span></p>
           <div id="skillcont">
-            <div className='whitebtn'><div><i className="fa-brands fa-discord"></i><p>Lorem</p></div></div>
-            <div className='whitebtn'><div><i className="fa-brands fa-discord"></i><p>Lorem</p></div></div>
-            <div className='whitebtn'><div><i className="fa-brands fa-discord"></i><p>Lorem</p></div></div>
-            <div className='whitebtn'><div><i className="fa-brands fa-discord"></i><p>Lorem</p></div></div>
-            <div className='whitebtn'><div><i className="fa-brands fa-discord"></i><p>Lorem</p></div></div>
-            <div className='whitebtn'><div><i className="fa-brands fa-discord"></i><p>Lorem</p></div></div>
-            <div className='whitebtn'><div><i className="fa-brands fa-discord"></i><p>Lorem</p></div></div>
-            <div className='whitebtn'><div><i className="fa-brands fa-discord"></i><p>Lorem</p></div></div>
+            <div className='whitebtn'><div><i className="fa-brands fa-react"></i><p>React</p></div></div>
+            <div className='whitebtn'><div><i className="fa-brands fa-node-js"></i><p>Node JS</p></div></div>
+            <div className='whitebtn'><div><i className="fa-brands fa-js"></i><p>Javascript</p></div></div>
+            <div className='whitebtn'><div><i className="fa-brands fa-bootstrap"></i><p>Bootstrap</p></div></div>
+            <div className='whitebtn'><div><i className="fa-brands fa-html5"></i><p>HTML5</p></div></div>
+            <div className='whitebtn'><div><i className="fa-brands fa-css3-alt"></i><p>CSS</p></div></div>
+            <div className='whitebtn'><div><i className="fa-brands fa-git-alt"></i><p>Git</p></div></div>
+            <div className='whitebtn'><div><i className="fa-brands fa-docker"></i><p>Docker</p></div></div>
+            <div className='whitebtn'><div><i className="fa-brands fa-java"></i><p>Java</p></div></div>
+            <div className='whitebtn'><div><i className="fa-brands fa-python"></i><p>Python</p></div></div>
           </div>
         </section>
         <section id="about" ref={aboutSec}>
@@ -167,60 +190,62 @@ function App() {
         <section id="projects" ref={projTrig}>
           <p className='herotitle'>My <span className="herobold"> Projects</span></p>
           <div className="project">
-            <div className="pjtimg"><img src="/proj1.png" alt="" /></div>
+            <div className="pjtimg"><img src="/img-2.jpg" alt="" /></div>
             <div className="pdetails">
               <p className="sno">01</p>
               <p className="pname">University Event Management System<br />| MERN</p>
               <p className="desc">Simplified the organization and participation in university events.
                 KeyFeatures: Implemented a streamlined booking process for meeting rooms,
                 reducing scheduling conflicts by 40% and enhancing team productivity by 25%</p>
-              <i className="plink fa-solid fa-arrow-up-right-from-square"></i>
+              <a href="https://mernuems.vercel.app/" target='__blank' className='plink'><i className="fa-solid fa-arrow-up-right-from-square"></i></a>
             </div>
           </div>
           <div className="project">
-            <div className="pjtimg"><img src="/proj1.png" alt="" /></div>
+            <div className="pjtimg"><img src="/proj2.png" alt="" /></div>
             <div className="pdetails">
               <p className="sno">02</p>
               <p className="pname">Gujarat Mangrove Analysis<br />|DataCube</p>
               <p className="desc">Simplified the organization and participation in university events.
                 KeyFeatures: Implemented a streamlined booking process for meeting rooms,
                 reducing scheduling conflicts by 40% and enhancing team productivity by 25%</p>
-              <i className="plink fa-solid fa-arrow-up-right-from-square"></i>
+                <a href="https://github.com/A-d-i-t-h-y-a/gujarat_mangrove_analysis" target='__blank' className='plink'><i className="fa-brands fa-github"></i></a>
             </div>
           </div>
           <div className="project">
-            <div className="pjtimg"><img src="/proj1.png" alt="" /></div>
+            <div className="pjtimg"><img src="/proj3.png" alt="" /></div>
             <div className="pdetails">
-              <p className="sno">01</p>
-              <p className="pname">University Event Management System | MERN</p>
-              <p className="desc">Simplified the organization and participation in university events.
-                KeyFeatures: Implemented a streamlined booking process for meeting rooms,
-                reducing scheduling conflicts by 40% and enhancing team productivity by 25%</p>
-              <i className="plink fa-solid fa-arrow-up-right-from-square"></i>
+              <p className="sno">03</p>
+              <p className="pname">Document Verification | Deep Learning</p>
+              <p className="desc"> Led the development of an online document verification system,
+                facilitating seamless document uploads in multiple formats such as PDF and
+                JPEG.Utilized machine learning algorithms to assess document authenticity,
+                focusing on key features including logos, names, and signatures. Enhanced user
+                confidence by ensuring accurate verification processes</p>
+                <a href="https://github.com/A-d-i-t-h-y-a/PS3" target='__blank' className='plink'><i className="fa-brands fa-github"></i></a>
             </div>
           </div>
           <div className="project">
-            <div className="pjtimg"><img src="/proj1.png" alt="" /></div>
+            <div className="pjtimg"><img src="/proj4.png" alt="" /></div>
             <div className="pdetails">
-              <p className="sno">01</p>
-              <p className="pname">University Event Management System | MERN</p>
-              <p className="desc">Simplified the organization and participation in university events.
-                KeyFeatures: Implemented a streamlined booking process for meeting rooms,
-                reducing scheduling conflicts by 40% and enhancing team productivity by 25%</p>
-              <i className="plink fa-solid fa-arrow-up-right-from-square"></i>
+              <p className="sno">04</p>
+              <p className="pname">INotebook | MERN</p>
+              <p className="desc">Developed a digital notebook application to streamline note
+                management tasks. The project aimed to provide users with a secure and
+                intuitive platform for organizing and accessing their notes conveniently</p>
+                <a href="https://inbook.vercel.app/login" target='__blank' className='plink'><i className="fa-solid fa-arrow-up-right-from-square"></i></a>
             </div>
           </div>
 
         </section>
         <section id="contact" ref={contactSec}>
           <div id="contactcont">
-            <div id="inputarea">
-              <input type="text" name="name" id="name" placeholder='name'/>
-              <input type="email" id='email' placeholder='email'/>
-              <input type="url" id='website' placeholder='Your Website (if exists)'/>
+            <form id="inputarea" onSubmit={handleSubmit}>
+              <input type="text" name="name" id="name" placeholder='name' />
+              <input type="email" id='email' placeholder='email' />
+              <input type="url" id='website' placeholder='Your Website (if exists)' />
               <textarea name="help" id="help" rows={10} placeholder='How can i help?'></textarea>
-              <button type='button'>Get In Touch</button>
-            </div>
+              <button type='submit'>Get In Touch</button>
+            </form>
             <div id="textArea">
               <p className='herotitle'><span className='herobold'>Let’s</span> <span className="herohollow">talk</span> <span className="herobold">for Something Special</span></p>
               <p className="desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam ipsam doloribus porro omnis eos odio dolorum voluptas consectetur delectus eligendi?</p>
