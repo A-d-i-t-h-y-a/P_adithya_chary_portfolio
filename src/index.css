@@ -1,0 +1,304 @@
+#hero, #skills, #about, #projects, #contact{
+  padding: 0 5rem;
+}
+nav {
+  display: flex;
+  height: 12vh;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+nav ul {
+  display: flex;
+  justify-content: space-evenly;
+  width: 50%;
+  list-style: none;
+  font-size: 0.9em;
+  font-weight: bold;
+  font-style: normal;
+}
+
+nav a {
+  text-decoration: none;
+  color: black;
+}
+
+#resume {
+  background-color: black;
+  color: white;
+  height: 55%;
+  border: none;
+  border-radius: 5px;
+  padding: 0px 15px;
+  box-sizing: border-box;
+}
+
+#resume i {
+  padding-left: 5px;
+}
+
+#hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 0 2rem 0;
+  /* height: 100vh; */
+}
+
+#herohead {
+  text-align: left;
+  width: 50%;
+}
+
+.herotitle {
+  font-size: 3.8rem;
+  margin: 2rem 0rem;
+}
+
+#hero .desc {
+  margin-bottom: 3rem;
+}
+
+#heroimg {
+  width: 50%;
+}
+
+#heroimg img {
+  width: 100%;
+}
+
+.herobold {
+  font-weight: 800;
+}
+
+.herohollow {
+  font-weight: 800;
+  color: #fff;
+  text-shadow:
+    3px 3px 0 #000,
+    -3px 3px 0 #000,
+    -3px -3px 0 #000,
+    3px -3px 0 #000;
+}
+
+#herobtn {
+  display: flex;
+  box-sizing: border-box;
+}
+
+.blackbtn {
+  background-color: white;
+  border: 2px solid black;
+  padding: 2.5%;
+  border-radius: 5px;
+}
+
+.blackbtn:hover {
+  background-color: black;
+  color: white;
+}
+
+.blackbtn:hover i {
+  color: white;
+}
+
+.whitebtn {
+  background-color: black;
+  border: 2px solid white;
+  padding: 2.5%;
+  border-radius: 5px;
+}
+
+.whitebtn:hover {
+  background-color: white;
+  color: black;
+}
+
+.whitebtn:hover i {
+  color: black;
+}
+
+#herobtn button:not(:last-child) {
+  margin-right: 5%;
+}
+
+
+#herobtn i {
+  font-size: large;
+  text-align: center;
+}
+
+#skills {
+  /* min-height: 100vh; */
+  background-color: black;
+  color: white;
+  /* margin: 5rem 0; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+#skillcont {
+  margin-bottom: 4.4rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+}
+
+#skillcont .whitebtn div {
+  display: flex;
+  flex-direction: column;
+  width: 10rem;
+  height: 10rem;
+}
+
+#skillcont .whitebtn div i {
+  height: 70%;
+  font-size: 3.5rem;
+  align-content: center;
+}
+
+#skillcont .whitebtn div p {
+  font-weight: bold;
+  font-size: larger;
+}
+
+
+#about{
+  /* min-height: 100vh; */
+  display: flex;
+  box-sizing: border-box;
+  align-items: center;
+}
+
+#abthead{
+  margin: 5rem 0rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+#abtimg{
+  width: 50%;
+}
+
+#aboutme{
+  text-align: left;
+  padding-right: 3rem;
+  box-sizing: border-box;
+  width: 48%;
+}
+
+.desc{
+  color: #71717A;
+}
+
+#projects{
+  background-color: black;
+  color: white;
+  padding: 0.5rem 5rem 2rem 5rem;
+  /* overflow-y: auto; */
+}
+
+.project:nth-child(even){
+  display: flex;
+  justify-content: space-between;
+}
+
+.project:nth-child(odd){
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+}
+
+.pjtimg{
+  width: 48%;
+}
+.pjtimg img{
+  width: 100%;
+}
+
+.pdetails{
+  width: 50%;
+  text-align: left;
+}
+
+.sno{
+  font-size: 3.8rem;
+  margin: 2rem 0rem;
+  font-weight: 800;
+}
+
+.pname{
+  font-size: 2rem;
+  font-weight: 800;
+}
+
+#contact{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 5rem 0;
+}
+
+#contactcont{
+  display: flex;
+  justify-content: space-between;
+}
+
+#inputarea{
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+#inputarea input, #inputarea textarea{
+  border: 1.5px solid black;
+  width: 75%;
+  padding: 0.7rem;
+  border-radius: 5px;
+  box-sizing: border-box;
+  resize: none;
+}
+
+#inputarea button{
+  width: fit-content;
+  background-color: black;
+  color: white;
+  /* height: 10%; */
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+#textArea{
+  width: 50%;
+  text-align: left;
+}
+
+@media only screen and (max-width: 955px) {
+  #hero {
+    flex-direction: column-reverse;
+  }
+  #herohead,#heroimg{
+    width: fit-content;
+  }
+  #hero .herotitle{
+    margin-top: 0;
+  }
+}
+
+@media only screen and (max-width: 1138px) {
+  #abthead {
+    flex-direction: column;
+  }
+  #aboutme, #abtimg{
+    width: auto;
+  }
+  #hero, #skills, #about, #projects, #contact{
+    padding:0 2rem;
+  }
+}
