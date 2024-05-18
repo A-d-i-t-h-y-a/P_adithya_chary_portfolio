@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import './App.css'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
@@ -11,6 +11,7 @@ function App() {
   const aboutSec = useRef();
   const contactSec = useRef();
   const skillTrig = useRef();
+  const [visible, setvisible] = useState((screen.width > 1138) ? true : false);
 
   const downloadResume = () => {
     // Replace 'resume.pdf' with the path to your PDF file
@@ -27,6 +28,10 @@ function App() {
     event.preventDefault();
     event.target.reset();
   };
+
+  useEffect(() => {
+
+  }, [visible])
 
   useGSAP(() => {
     gsap.fromTo("#hero #herohead p, #hero #heroimg, #herobtn button", {
@@ -127,8 +132,7 @@ function App() {
     <>
       <header>
         <nav>
-          <img src="" alt="" />
-          <ul>
+          { visible && <ul>
             <li><a href='#' onClick={() => aboutSec.current?.scrollIntoView({
               behavior: 'smooth'
             })}>About Me</a></li>
@@ -141,13 +145,13 @@ function App() {
             <li><a href='#' onClick={() => contactSec.current?.scrollIntoView({
               behavior: 'smooth'
             })}>Contact Me</a></li>
-          </ul>
+          </ul>}
           <div id='navbtns'>
             <button id='resume' onClick={downloadResume}>Resume<i className="fa-solid fa-download"></i></button>
-            <button id='hireme' onClick={()=> window.location.href = "mailto: periketi.adithyachary@gmail.com"}>Hire Me</button>
+            <button id='hireme' onClick={() => window.location.href = "mailto: periketi.adithyachary@gmail.com"}>Hire Me</button>
+            <i onClick={()=>setvisible(!visible)} className="menu fa-solid fa-bars"></i>
           </div>
         </nav>
-        <i className="menu fa-solid fa-bars"></i>
       </header>
       <hr />
       <main>
@@ -217,7 +221,7 @@ function App() {
               <p className="desc">Simplified the organization and participation in university events.
                 KeyFeatures: Implemented a streamlined booking process for meeting rooms,
                 reducing scheduling conflicts by 40% and enhancing team productivity by 25%</p>
-                <a href="https://github.com/A-d-i-t-h-y-a/gujarat_mangrove_analysis" target='__blank' className='plink'><i className="fa-brands fa-github"></i></a>
+              <a href="https://github.com/A-d-i-t-h-y-a/gujarat_mangrove_analysis" target='__blank' className='plink'><i className="fa-brands fa-github"></i></a>
             </div>
           </div>
           <div className="project">
@@ -230,7 +234,7 @@ function App() {
                 JPEG.Utilized machine learning algorithms to assess document authenticity,
                 focusing on key features including logos, names, and signatures. Enhanced user
                 confidence by ensuring accurate verification processes</p>
-                <a href="https://github.com/A-d-i-t-h-y-a/PS3" target='__blank' className='plink'><i className="fa-brands fa-github"></i></a>
+              <a href="https://github.com/A-d-i-t-h-y-a/PS3" target='__blank' className='plink'><i className="fa-brands fa-github"></i></a>
             </div>
           </div>
           <div className="project">
@@ -241,7 +245,7 @@ function App() {
               <p className="desc">Developed a digital notebook application to streamline note
                 management tasks. The project aimed to provide users with a secure and
                 intuitive platform for organizing and accessing their notes conveniently</p>
-                <a href="https://inbook.vercel.app/login" target='__blank' className='plink'><i className="fa-solid fa-arrow-up-right-from-square"></i></a>
+              <a href="https://inbook.vercel.app/login" target='__blank' className='plink'><i className="fa-solid fa-arrow-up-right-from-square"></i></a>
             </div>
           </div>
 

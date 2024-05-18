@@ -8,16 +8,16 @@
 
 nav {
   display: flex;
-  height: 12vh;
+  /* height: 12vh; */
   justify-content: space-evenly;
   align-items: center;
-  padding: 0 2rem;
+  padding: 0.7rem 2rem;
 }
 
 nav ul {
   display: flex;
   justify-content: space-evenly;
-  width: 50%;
+  width: 70%;
   list-style: none;
   font-size: 0.9em;
   font-weight: bold;
@@ -30,7 +30,7 @@ nav a {
 }
 
 #navbtns {
-  width: 14%;
+  width: 13rem;
   height: 100%;
   display: flex;
   justify-content: space-between;
@@ -41,10 +41,10 @@ nav a {
 #hireme {
   background-color: black;
   color: white;
-  height: 55%;
+  height: 100%;
   border: none;
   border-radius: 5px;
-  padding: 0px 15px;
+  padding: 0.8rem 1rem;
   box-sizing: border-box;
   cursor: pointer;
 }
@@ -354,17 +354,40 @@ svg path {
 
 @media only screen and (max-width: 1138px) {
   nav {
-    display: none;
+    flex-direction: column-reverse;
+    width: 100%;
+  }
+
+  #navbtns{
+    margin-left: auto;
+    width: 16rem;
+    margin-top: 1rem;
+  }
+
+  nav ul{
+    flex-direction: column;
+    margin: 1rem 0 0 0;
+    width: 100%;
+    padding-left: 0;
+  }
+
+  nav ul li{
+    padding: 0.7rem 0;
+    border-bottom: 1px solid red;
+  }
+
+  header{
+    display: flex;
+    justify-content: space-between;
   }
 
   .menu {
     padding: 1rem;
-    position: relative;
-    left: 43%;
-    margin: 0.5rem 0 0 0;
+    /* position: relative; */
     border-radius: 10px;
     border: 2px solid black;
     display: inline-block;
+    max-height: 1rem;
   }
 
   #abthead {
