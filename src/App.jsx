@@ -2,7 +2,9 @@ import { useEffect, useRef, useState } from 'react'
 import './App.css'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
+import emailjs from 'emailjs-com';
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { Button, Divider, notification, Space } from 'antd';
 
 gsap.registerPlugin(ScrollTrigger);
 function App() {
@@ -12,6 +14,8 @@ function App() {
   const contactSec = useRef();
   const skillTrig = useRef();
   const [visible, setvisible] = useState((screen.width > 1138) ? true : false);
+  const form = useRef();
+  const [api, contextHolder] = notification.useNotification();
 
   const downloadResume = () => {
     // Replace 'resume.pdf' with the path to your PDF file
@@ -24,9 +28,39 @@ function App() {
     document.body.removeChild(link);
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    event.target.reset();
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    emailjs
+      .sendForm('service_xmdozrl', 'template_w4u0vgh', form.current, 'x36ElhzIBi4K3JpsE')
+      .then(
+        () => {
+          api.success({
+            message: `Success`,
+            description:
+              'Message Sent Successfully',
+            placement: 'top',
+            style: {
+              backgroundColor: '#ccffcc',
+              border: '1px solid #00ff00',
+              borderRadius: '10px'
+            },
+          })
+          e.target.reset();
+        },
+        (error) => {
+          api.error({
+            message: 'Error',
+            description: 'Failed to send message. Please try again later.',
+            placement: 'top',
+            style: {
+              backgroundColor: '#ffcccc',
+              border: '1px solid #ff0000',
+              borderRadius: '10px',
+            },
+          });
+        },
+      );
   };
 
   useEffect(() => {
@@ -132,7 +166,7 @@ function App() {
     <>
       <header>
         <nav>
-          { visible && <ul>
+          {visible && <ul>
             <li><a href='#' onClick={() => aboutSec.current?.scrollIntoView({
               behavior: 'smooth'
             })}>About Me</a></li>
@@ -149,7 +183,7 @@ function App() {
           <div id='navbtns'>
             <button id='resume' onClick={downloadResume}>Resume<i className="fa-solid fa-download"></i></button>
             <button id='hireme' onClick={() => window.location.href = "mailto: periketi.adithyachary@gmail.com"}>Hire Me</button>
-            <i onClick={()=>setvisible(!visible)} className="menu fa-solid fa-bars"></i>
+            <i onClick={() => setvisible(!visible)} className="menu fa-solid fa-bars"></i>
           </div>
         </nav>
       </header>
@@ -252,11 +286,12 @@ function App() {
         </section>
         <section id="contact" ref={contactSec}>
           <div id="contactcont">
-            <form id="inputarea" onSubmit={handleSubmit}>
-              <input type="text" name="name" id="name" placeholder='name' />
-              <input type="email" id='email' placeholder='email' />
-              <input type="url" id='website' placeholder='Your Website (if exists)' />
-              <textarea name="help" id="help" rows={10} placeholder='How can i help?'></textarea>
+            {contextHolder}
+            <form id="inputarea" onSubmit={handleSubmit} ref={form}>
+              <input type="text" name="name" id="name" placeholder='name' required />
+              <input type="email" name='email' id='email' placeholder='email' required />
+              <input type="url" name='url' id='website' placeholder='Your Website (if exists)' />
+              <textarea name="message" id="help" rows={10} placeholder='How can i help?' required ></textarea>
               <button type='submit'>Get In Touch</button>
             </form>
             <div id="textArea">
