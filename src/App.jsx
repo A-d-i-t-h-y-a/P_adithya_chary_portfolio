@@ -19,10 +19,10 @@ function App() {
 
   const downloadResume = () => {
     // Replace 'resume.pdf' with the path to your PDF file
-    const pdfUrl = '/Periketi_Adithya_Chary_Resume.pdf';
+    const pdfUrl = '/Adithya_Chary_Periketi_Resume.pdf';
     const link = document.createElement('a');
     link.href = pdfUrl;
-    link.download = 'Periketi_Adithya_Chary_Resume.pdf';
+    link.download = 'Adithya_Chary_Periketi_Resume.pdf';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
