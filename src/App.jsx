@@ -187,7 +187,7 @@ function App() {
           </div>
         </nav>
       </header>
-      <hr />
+      <hr style={{ marginTop: 0 }} />
       <main>
         <section id='hero'>
           <div id='herohead'>
@@ -296,7 +296,7 @@ function App() {
             </form>
             <div id="textArea">
               <p className='herotitle'><span className='herobold'>Let’s</span> <span className="herohollow">talk</span> <span className="herobold">for Something Special</span></p>
-              <p className="desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam ipsam doloribus porro omnis eos odio dolorum voluptas consectetur delectus eligendi?</p>
+              <p className="desc">Driven by passion and expertise, I’m here to transform ideas into impactful projects. Let's explore how we can bring value to each other through meaningful collaborations.</p>
               <p>periketi.adithyachary@gmail.com</p>
               <p>7993261332</p>
             </div>
